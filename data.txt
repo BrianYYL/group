@@ -1,0 +1,14 @@
+A B C
+0.4 0.3 0.3
+Frank 90 70 80
+Mary 100 90 95
+Joe 60 60 70
+Joey 80 85 95
+Alice 80 87 65
+Alex 75 75 75
+avoid
+Mary Joey
+Joey Frank
+Alice Alex
+Mary Alice
+Joey Alice
