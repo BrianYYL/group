@@ -4,7 +4,7 @@ import fileinput
 import random
 
 class Grouping: 
-    ### method for soting input member data ###
+    ### method for sorting input member data ###
     def sortInputs(inputFile):
         # creates a file input stream
         inputFileObj = fileinput.input(inputFile)
@@ -12,11 +12,13 @@ class Grouping:
         attributeArray = inputFileObj.readline().split()
         # gets weights
         weightArray = []
+        # #########################改改改2維###################################
         data = inputFileObj.readline().split()
         for i in range(len(data)):
             weightArray.append(float(data[i]))
-        # initializes the member array
+        # string change to float
         memberArray = []
+        # #########################改改改2維###################################
         # initializes the avioded combination array
         avoidedCombinationArray = []
         # creates Memeber objects and puts them in an array (memberArray)
@@ -27,22 +29,28 @@ class Grouping:
                 # puts the avoided combinations in an array (avoidedCombinationArray)
                 while(True):
                     data = inputFileObj.readline().split()
+                    # 分隔字串/list
                     # checks if it is the end of the file (break if it is)
                     if (len(data) == 0):
-                        inputFileObj.close()
-                        break
+                        inputFileObj.close() #使用.close這一方法
+                        break #跳出小while
                     avoidedCombinationArray.append(data)
-                break
+                break  # 跳出大while
             name = data[0]
-            scoreArray = []
+            scoreArray = [[]]
             for i in range(1,len(data)):
                 scoreArray.append(float(data[i]))
             member = Member(name, attributeArray, scoreArray, weightArray)
-            memberArray.append(member)        
+            memberArray.append(member)
+            #list of Member object/裡面放的是物件(e.g.frank的所有、mary的所有) 
         # sorts memberArray by members' total scores (largest to smallest)   
+        print(memberArray)
         memberArray = sorted(memberArray, key = lambda member: member.evaluate(), reverse = True)
+        print(memberArray)
         # returns memberArray & avoidedCombinationArray
         return memberArray, avoidedCombinationArray
+    #將memberarray和avoidedCombinationArray return給呼叫者，連貫到run的第6行
+
 
     ### method for selecting the best group ###
     def returnBestGroup(memberArray, groupSize, avoidCombinationArray):
@@ -131,4 +139,3 @@ class Grouping:
 
 
 
-    
